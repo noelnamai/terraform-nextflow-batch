@@ -1,0 +1,5 @@
+iac/.terraform*
+nextflow/.nextflow*
+iac/errored.tfstate
+iac/terraform.tfstate
+iac/terraform.tfstate.backup
