@@ -40,16 +40,15 @@ process annotate_variants {
     script:
     """
     gatk --java-options "-Xmx4g" FuncotatorDataSourceDownloader \
-    --germline \
-    --validate-integrity \
-    --extract-after-download \
-    --output ./funcotator-data-source
-    
+    --germline true \
+    --validate-integrity true \
+    --extract-after-download true
+
     gatk --java-options "-Xmx4g" Funcotator \
     --variant ${vcf} \
     --reference ${genome_fasta} \
     --ref-version hg38 \
-    --data-sources-path ./funcotator-data-source \
+    --data-sources-path funcotator_dataSources.v1.6.20190124g \
     --output-file-format VCF \
     --output "${vcf.baseName}.annotated.vcf"
     """
