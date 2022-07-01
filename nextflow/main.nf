@@ -80,6 +80,7 @@ workflow {
 
         // annotate variants
         variant_annotation(
-            variant_discovery.out
+            variant_discovery.out,
+            genome_fasta_files
         )
 }

@@ -20,7 +20,7 @@ workflow dna_alignment {
             genome_bwa_files
         )
         
-        // convert the sam file to bam file
+        // convert sam and sort the bam file
         sam2bam(
             align_reads.out
         )
@@ -34,7 +34,7 @@ workflow dna_alignment {
         index_bam.out
 }
 
-// read alignment via burrows-wheeler aligner - mem algorithm
+// read alignment using burrows-wheeler aligner mem algorithm
 process align_reads {
     
     cpus = 16
@@ -60,7 +60,7 @@ process align_reads {
     """
 }
 
-// use samtools to convert the sam to bam format
+// use samtools to convert sam to sorted bam file
 process sam2bam {
     
     cpus = 4
@@ -79,6 +79,7 @@ process sam2bam {
     samtools view \
     -b ${sam} \
     | samtools sort \
+    --threads ${task.cpus} \
     -o "${sam.baseName}.sorted.bam"
     """
 }

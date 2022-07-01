@@ -6,12 +6,15 @@ workflow variant_annotation {
 
     take:
         // vcf: channel of [val(sample), val(vcf)]
+        // genome_fasta_files: channel of [path(genome_fasta_dict), path(genome_fasta), path(genome_fasta_fai)]
         vcf
+        genome_fasta_files
 
     main:
         // annotate variants
         annotate_variants(
-            vcf
+            vcf,
+            genome_fasta_files
         )
 
     emit:
@@ -24,20 +27,30 @@ process annotate_variants {
     cpus = 4
     memory = "15.GB"
     
-    container "noelnamai/vep:106"
+    container "broadinstitute/gatk:4.1.3.0"
     publishDir path: "$params.results/$sample", mode: "copy"
     
     input:
     tuple val(sample), path(vcf)
+    tuple path(genome_fasta_dict), path(genome_fasta), path(genome_fasta_fai)
     
     output:
     tuple val(sample), path("${vcf.baseName}.annotated.vcf")
     
     script:
     """
-    /ensembl-vep-release-106/vep \
-    --database \
-    -i ${vcf} \
-    -o "${vcf.baseName}.annotated.vcf"
+    gatk --java-options "-Xmx4g" FuncotatorDataSourceDownloader \
+    --germline \
+    --validate-integrity \
+    --extract-after-download \
+    --output ./funcotator-data-source
+    
+    gatk --java-options "-Xmx4g" Funcotator \
+    --variant ${vcf} \
+    --reference ${genome_fasta} \
+    --ref-version hg38 \
+    --data-sources-path ./funcotator-data-source \
+    --output-file-format VCF \
+    --output "${vcf.baseName}.annotated.vcf"
     """
 }

@@ -92,7 +92,7 @@ process filter_variants {
     --variant ${vcf} \
     --reference ${genome_fasta} \
     --filter-name "filter" \
-    --filter-expression "FS > 30.0 && QD < 2.0" \
+    --filter-expression "QD < 2.0 || FS > 60.0 || MQ < 40.0" \
     --output "${vcf.baseName}.filtered.vcf"
     """
 }
