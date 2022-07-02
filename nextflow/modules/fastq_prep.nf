@@ -19,7 +19,6 @@ workflow fastq_prep {
         // trim adapters on each fastq file
         trim_adapters(
             input_fastqs
-                .transpose()
         )
     
     emit:

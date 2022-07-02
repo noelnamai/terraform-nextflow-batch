@@ -114,7 +114,7 @@ process merge_vcfs {
 
     script:
     list=vcfs.join(" -I ")
-	"""
+    """
     gatk --java-options "-Xmx4g" MergeVcfs \
     --INPUT $list \
     --REFERENCE_SEQUENCE ${genome_fasta} \
