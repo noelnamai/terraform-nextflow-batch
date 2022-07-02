@@ -155,10 +155,9 @@
     > *Run `nextflow run main.nf -work-dir s3://batch-work-bucket/ --downsample true` to downsample the data. This is useful for debuging purposes.*
 
     ```
-    $ nextflow run main.nf -work-dir s3://batch-work-bucket/
-
+    $ nextflow run main.nf -work-dir s3://batch-work-bucket/ --downsample true      
     N E X T F L O W  ~  version 22.04.4
-    Launching `main.nf` [maniac_meninsky] DSL2 - revision: 2fe6223f2c
+    Launching `main.nf` [stoic_ekeblad] DSL2 - revision: 577594cad8
 
     G E R M L I N E  V A R I A N T  D I S C O V E R Y
     =================================================
@@ -168,20 +167,29 @@
     Samtools: Samtools 1.15.1
     GATK    : GenomeAnalysisTK 4.1.3.0
 
-    executor >  awsbatch (413)
-    [6a/d3e12f] process > fastq_prep:sample_fastqs (1)             [100%] 1 of 1 ✔
-    [8f/bfc695] process > fastq_prep:trim_adapters (1)             [100%] 1 of 1 ✔
-    [33/d3e4ab] process > fastq_qc:fastqc (2)                      [100%] 2 of 2 ✔
-    [a9/32650f] process > dna_alignment:align_reads (1)            [100%] 1 of 1 ✔
-    [45/17448e] process > dna_alignment:sam2bam (1)                [100%] 1 of 1 ✔
-    [de/87d0d0] process > dna_alignment:index_bam (1)              [100%] 1 of 1 ✔
-    [7e/cd99cc] process > bam_prep:split_bam (1)                   [100%] 1 of 1 ✔
-    [1c/b91d8b] process > bam_prep:add_read_groups (97)            [100%] 100 of 100 ✔
-    [0b/277730] process > bam_prep:index_splitted_bam (100)        [100%] 100 of 100 ✔
-    [59/0beb22] process > bam_qc:mapping_stats (1)                 [100%] 1 of 1 ✔
-    [27/5d1371] process > variant_discovery:call_variants (100)    [100%] 100 of 100 ✔
-    [14/8c08aa] process > variant_discovery:filter_variants (100)  [100%] 100 of 100 ✔
-    [c4/0ffc78] process > variant_discovery:merge_vcfs (1)         [100%] 1 of 1 ✔
-    [b2/0a0ad8] process > variant_discovery:sort_vcf (1)           [100%] 1 of 1 ✔
-    [2f/3de622] process > variant_annotation:annotate_variants (1) [100%] 1 of 1 ✔
+    executor >  awsbatch (412)
+    [4c/6745a8] process > fastq_prep:sample_fastqs (1)             [100%] 1 of 1 ✔
+    [4f/213ee9] process > fastq_prep:trim_adapters (1)             [100%] 1 of 1 ✔
+    [ed/09b905] process > fastq_qc:fastqc (2)                      [100%] 2 of 2 ✔
+    [92/9679af] process > dna_alignment:align_reads (1)            [100%] 1 of 1 ✔
+    executor >  awsbatch (412)
+    [4c/6745a8] process > fastq_prep:sample_fastqs (1)             [100%] 1 of 1 ✔
+    [4f/213ee9] process > fastq_prep:trim_adapters (1)             [100%] 1 of 1 ✔
+    [ed/09b905] process > fastq_qc:fastqc (2)                      [100%] 2 of 2 ✔
+    [92/9679af] process > dna_alignment:align_reads (1)            [100%] 1 of 1 ✔
+    [ff/ff2437] process > dna_alignment:sam2bam (1)                [100%] 1 of 1 ✔
+    [0c/e23abc] process > dna_alignment:index_bam (1)              [100%] 1 of 1 ✔
+    [03/516b9f] process > bam_prep:split_bam (1)                   [100%] 1 of 1 ✔
+    [09/99c33f] process > bam_prep:add_read_groups (99)            [100%] 100 of 100 ✔
+    [38/2141c2] process > bam_prep:index_splitted_bam (100)        [100%] 100 of 100 ✔
+    [6d/05e612] process > bam_qc:mapping_stats (1)                 [100%] 1 of 1 ✔
+    [6e/c14969] process > variant_discovery:call_variants (100)    [100%] 100 of 100 ✔
+    [e3/6b6263] process > variant_discovery:filter_variants (100)  [100%] 100 of 100 ✔
+    [4d/56106d] process > variant_discovery:merge_vcfs (1)         [100%] 1 of 1 ✔
+    [c0/60c3f2] process > variant_discovery:sort_vcf (1)           [100%] 1 of 1 ✔
+    [dc/e5303e] process > variant_annotation:annotate_variants (1) [100%] 1 of 1 ✔
+    Completed at: 01-Jul-2022 22:10:42
+    Duration    : 4h 18m 2s
+    CPU hours   : 83.3
+    Succeeded   : 412
     ```
