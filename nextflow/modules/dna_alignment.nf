@@ -40,7 +40,6 @@ process align_reads {
     cpus = 16
     memory = "60.GB"
     
-    storeDir params.storedir
     container "noelnamai/bwa:0.7.12"
 
     input:

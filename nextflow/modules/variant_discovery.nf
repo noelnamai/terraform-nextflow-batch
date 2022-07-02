@@ -49,7 +49,6 @@ process call_variants {
     cpus = 4
     memory = "15.GB"
 
-    storeDir params.storedir
     container "broadinstitute/gatk:4.1.3.0"
 
     input:

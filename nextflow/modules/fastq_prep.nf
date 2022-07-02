@@ -53,7 +53,6 @@ process trim_adapters {
     cpus = 4
     memory = "15.GB"
     
-    storeDir params.storedir
     container "noelnamai/trimmomatic:0.39"
     
     input:
