@@ -110,6 +110,7 @@
     > *Nextflow requires Bash 3.2 (or later) and Java 11 (or later, up to 18) to be installed.*
 
     ```
+    $ cd nextflow
     $ curl -s https://get.nextflow.io | bash
     $ chmod +x nextflow
     $ nextflow self-update
