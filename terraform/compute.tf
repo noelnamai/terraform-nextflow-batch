@@ -73,22 +73,3 @@ resource "aws_batch_job_queue" "tf_batch_job_queue" {
     Name = "tf-batch-job-queue"
   }
 }
-
-# create a new ec2 instance for test e.t.c
-# resource "aws_instance" "tf_ec2_instance" {
-#   ami                    = data.aws_ami.tf_batch_amazon_linux_ami.id
-#   ebs_optimized          = true
-#   key_name               = var.key_name
-#   instance_type          = "m5.xlarge"
-#   subnet_id              = aws_subnet.tf_aws_batch_public_subnet.id
-#   vpc_security_group_ids = [aws_security_group.tf_aws_batch_sg.id]
-
-#   root_block_device {
-#     volume_size           = 100
-#     delete_on_termination = true
-#   }
-
-#   tags = {
-#     Name = "amzn2-gp-instance"
-#   }
-# }
