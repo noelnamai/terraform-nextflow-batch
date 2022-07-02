@@ -10,29 +10,14 @@
     terraform-nextflow-batch
     ├── README.md
     ├── docker
-    │   ├── bcftools
-    │   │   └── Dockerfile
     │   ├── fastqc
     │   │   └── Dockerfile
     │   ├── samtools
     │   │   └── Dockerfile
     │   ├── seqtk
     │   │   └── Dockerfile
-    │   ├── trimmomatic
-    │   │   └── Dockerfile
-    │   └── vep
+    │   └── trimmomatic
     │       └── Dockerfile
-    ├── iac
-    │   ├── compute.tf
-    │   ├── errored.tfstate
-    │   ├── iam.tf
-    │   ├── network.tf
-    │   ├── outputs.tf
-    │   ├── providers.tf
-    │   ├── storage.tf
-    │   ├── terraform.tfstate
-    │   ├── terraform.tfstate.backup
-    │   └── vars.tf
     ├── images
     │   └── aws-batch-infrastructure.png
     ├── nextflow
@@ -46,9 +31,20 @@
     │   │   ├── variant_annotation.nf
     │   │   └── variant_discovery.nf
     │   └── nextflow.config
-    └── packer
-        ├── aws-amzn2.pkr.hcl
-        └── user-data.sh
+    ├── packer
+    │   ├── aws-amzn2.pkr.hcl
+    │   └── user-data.sh
+    └── terraform
+        ├── compute.tf
+        ├── errored.tfstate
+        ├── iam.tf
+        ├── network.tf
+        ├── outputs.tf
+        ├── providers.tf
+        ├── storage.tf
+        ├── terraform.tfstate
+        ├── terraform.tfstate.backup
+        └── vars.tf
     ```
 
 2. Install the latest version of the [AWS Command Line Interface (AWS CLI)](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html):
@@ -99,10 +95,10 @@
 
 7. Build the [AWS Batch Infrastructure](https://aws.amazon.com/batch/) by running the following `terraform` commands:
 
-    > *Change the values of the `profile` and `key_name` in the `iac/vars.tf` file and change the `bucket` name for both `tf_batch_data_bucket` and `tf_batch_work_bucket`*
+    > *Change the values of the `profile` and `key_name` in the `terraform/vars.tf` file and change the `bucket` name for both `tf_batch_data_bucket` and `tf_batch_work_bucket`*
 
     ```
-    $ cd iac
+    $ cd terraform
     $ terraform init
     $ terraform apply
     ```
