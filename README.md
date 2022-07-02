@@ -71,7 +71,8 @@
     ```
     $ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
     $ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-    $ sudo apt-get update && sudo apt-get install packer
+    $ sudo apt-get update
+    $ sudo apt-get install packer
     ```
 
 5. Use Packer to create a new [Amazon Machine Images (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html):
@@ -90,12 +91,15 @@
     $ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
     $ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
     $ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-    $ sudo apt-get update && sudo apt-get install terraform
+    $ sudo apt-get update
+    $ sudo apt-get install terraform
     ```
 
 7. Build the [AWS Batch Infrastructure](https://aws.amazon.com/batch/) by running the following `terraform` commands:
 
     > *Change the values of the `profile` and `key_name` in the `terraform/vars.tf` file and change the `bucket` name for both `tf_batch_data_bucket` and `tf_batch_work_bucket`*
+
+    >*To use [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/), change aws_batch_compute_environment > compute_resources > type to "SPOT".*
 
     ```
     $ cd terraform
