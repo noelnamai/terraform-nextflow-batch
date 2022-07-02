@@ -172,7 +172,6 @@
     [4f/213ee9] process > fastq_prep:trim_adapters (1)             [100%] 1 of 1 ✔
     [ed/09b905] process > fastq_qc:fastqc (2)                      [100%] 2 of 2 ✔
     [92/9679af] process > dna_alignment:align_reads (1)            [100%] 1 of 1 ✔
-    executor >  awsbatch (412)
     [4c/6745a8] process > fastq_prep:sample_fastqs (1)             [100%] 1 of 1 ✔
     [4f/213ee9] process > fastq_prep:trim_adapters (1)             [100%] 1 of 1 ✔
     [ed/09b905] process > fastq_qc:fastqc (2)                      [100%] 2 of 2 ✔
