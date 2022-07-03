@@ -99,7 +99,7 @@
 
     > *Change the values of the `profile` and `key_name` in the `terraform/vars.tf` file and change the `bucket` name for both `tf_batch_data_bucket` and `tf_batch_work_bucket`*
 
-    >*To use [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/), change aws_batch_compute_environment > compute_resources > type to "SPOT".*
+    > *To use [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/), change aws_batch_compute_environment > compute_resources > type to "SPOT" in `compute.tf`.*
 
     ```
     $ cd terraform

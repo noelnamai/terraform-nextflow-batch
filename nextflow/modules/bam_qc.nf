@@ -21,8 +21,8 @@ workflow bam_qc {
 // use samtools to generate summary mapping statistics
 process mapping_stats {
     
-    cpus = 2
-    memory = "5.GB"
+    cpus = 4
+    memory = "15.GB"
     
     container "noelnamai/samtools:1.15.1"
     publishDir path: "$params.results/$sample", mode: "copy"
