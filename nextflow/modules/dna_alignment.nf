@@ -5,9 +5,9 @@ nextflow.enable.dsl=2
 workflow dna_alignment {
     
     take:
-        // channel of [val(sample), path(forward), path(reverse)]
-        // channel of [path(genome_fasta_dict), path(genome_fasta), path(genome_fasta_fai)]
-        // channel of [path(genome_fasta_amb), path(genome_fasta_ann), path(genome_fasta_bwt), path(genome_fasta_pac), path(genome_fasta_sa)]
+        // fastqs: channel of [val(sample), path(forward), path(reverse)]
+        // genome_fasta_files: channel of [path(genome_fasta_dict), path(genome_fasta), path(genome_fasta_fai)]
+        // genome_bwa_files: channel of [path(genome_fasta_amb), path(genome_fasta_ann), path(genome_fasta_bwt), path(genome_fasta_pac), path(genome_fasta_sa)]
         fastqs
         genome_fasta_files
         genome_bwa_files

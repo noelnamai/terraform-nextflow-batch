@@ -5,8 +5,10 @@ nextflow.enable.dsl=2
 workflow bam_prep {
     
     take:
-        bams               // bams: channel of [val(sample), path(bam), path(bai)]
-        genome_fasta_files // channel of [path(genome_fasta_dict), path(genome_fasta), path(genome_fasta_fai)]
+        // bams: channel of [val(sample), path(bam), path(bai)]
+        // genome_fasta_files: channel of [path(genome_fasta_dict), path(genome_fasta), path(genome_fasta_fai)]
+        bams               
+        genome_fasta_files
         
     main:
         // use samtools to split bam file by chromosome
