@@ -1,0 +1,51 @@
+name: Automate Terraform with CI/CD
+
+on:
+  push:
+    branches:
+    - dev
+    - main
+    paths:
+    - terraform/**
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Github actions repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+      
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -input=false
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == "failure"
+        run: exit 1
+
+      # step will only run when a commit is pushed to main
+      - name: Terraform Apply
+        if: github.ref == "refs/heads/main" && github.event_name == "push"
+        run: terraform apply -auto-approve -input=false
