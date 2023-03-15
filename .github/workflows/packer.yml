@@ -1,0 +1,41 @@
+name: Build Amazon Machine Image
+
+on:
+  push:
+    branches:
+    - dev
+    - main
+    paths:
+    - packer/**
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Github actions repository
+        uses: actions/checkout@v3
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: "1.8.3"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Run `packer init`
+        id: init
+        working-directory: ./packer
+        run: "packer init aws-amzn2.pkr.hcl"
+
+      - name: Run `packer build`
+        id: build
+        working-directory: ./packer
+        run: "packer build aws-amzn2.pkr.hcl"

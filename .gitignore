@@ -1,0 +1,7 @@
+.DS_Store
+.nextflow*
+.terraform*
+errored.tfstate
+terraform.tfstate
+terraform.tfstate.backup
+vault/*

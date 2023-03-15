@@ -1,0 +1,33 @@
+name: Test Nextflow Pipeline
+
+on:
+  push:
+    branches:
+    - dev
+    - main
+    paths:
+    - nextflow/**
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  nextflow:
+    name: Run the Nextflow pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone Github actions repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Install Nextflow
+        uses: nf-core/setup-nextflow@v1.2.0
+
+      - name: Run the Netflow pipeline
+        run: nextflow run ./nextflow/main.nf -work-dir s3://batch-work-bucket-virginia/ --downsample true
