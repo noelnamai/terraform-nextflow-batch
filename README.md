@@ -61,7 +61,7 @@
     Default output format [None]: json
     ```
 
-4. Alternatively, install [Vault](https://developer.hashicorp.com/vault/docs/install). HashiCorp Vault is an identity-based secrets and encryption management system.
+4. Install [Vault](https://developer.hashicorp.com/vault/docs/install). HashiCorp Vault is an identity-based secrets and encryption management system. This can be used to manage credentials during local developement and avoid credential leaks to GitHub.
 
     ```
     $ vault operator init
@@ -71,11 +71,11 @@
     Setup the following under `secrets` with path `developement/aws`:
 
     ```
+    AWS_USER_ID
+    AWS_KEY_NAME
     AWS_ACCESS_KEY_ID
     AWS_DEFAULT_REGION
-    AWS_KEY_NAME
     AWS_SECRET_ACCESS_KEY
-    AWS_USER_ID
     ```
 
 5. Install [Packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli?in=packer/docker-get-started):
