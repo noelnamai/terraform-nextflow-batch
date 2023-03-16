@@ -1,12 +1,6 @@
-# define the aws key name
-locals {
-  key_name = data.vault_generic_secret.tf_secret_vault_development.data["AWS_KEY_NAME"]
-}
+variable aws_key_name {}
 
-# specify the aws region to deploy the compute environment
-locals {
-  region = data.vault_generic_secret.tf_secret_vault_development.data["AWS_DEFAULT_REGION"]
-}
+variable "aws_iam_user_id" {}
 
 # get all the docker repository names
 locals {

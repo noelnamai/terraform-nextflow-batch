@@ -25,22 +25,18 @@
     ├── packer
     │   ├── aws-amzn2.pkr.hcl
     │   └── user-data.sh
-    ├── terraform
-    │   ├── compute.tf
-    │   ├── ecr.tf
-    │   ├── iam.tf
-    │   ├── monitoring.tf
-    │   ├── network.tf
-    │   ├── outputs.tf
-    │   ├── providers.tf
-    │   ├── storage.tf
-    │   ├── terraform.tfstate
-    │   ├── terraform.tfstate.backup
-    │   └── vars.tf
-    └── vault
-        ├── vault
-        ├── vault-cluster-vault.json
-        └── vault.config
+    └── terraform
+        ├── compute.tf
+        ├── ecr.tf
+        ├── iam.tf
+        ├── monitoring.tf
+        ├── network.tf
+        ├── outputs.tf
+        ├── providers.tf
+        ├── storage.tf
+        ├── terraform.tfstate
+        ├── terraform.tfstate.backup
+        └── vars.tf
     ```
 
 2. Install the latest version of the [AWS Command Line Interface (AWS CLI)](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html):
@@ -62,24 +58,7 @@
     Default output format [None]: json
     ```
 
-4. Install [Vault](https://developer.hashicorp.com/vault/docs/install). HashiCorp Vault is an identity-based secrets and encryption management system. This can be used to manage credentials during local developement and avoid credential leaks to GitHub.
-
-    ```
-    $ vault operator init
-    $ vault server -config=vault.config
-    ```
-
-    Setup the following under `secrets` with path `developement/aws`:
-
-    ```
-    AWS_USER_ID
-    AWS_KEY_NAME
-    AWS_ACCESS_KEY_ID
-    AWS_DEFAULT_REGION
-    AWS_SECRET_ACCESS_KEY
-    ```
-
-5. Install [Packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli?in=packer/docker-get-started):
+4. Install [Packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli?in=packer/docker-get-started):
 
     ```
     $ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -88,7 +67,7 @@
     $ sudo apt-get install packer
     ```
 
-6. Use Packer to create a new [Amazon Machine Images (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html):
+5. Use Packer to create a new [Amazon Machine Images (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html):
 
     > *Change the `region` and `profile` in the `packer/aws-amzn2.pkr.hcl` file to match the values selected above.*
 
@@ -98,7 +77,7 @@
     $ packer build aws-amzn2.pkr.hcl
     ```
 
-7. Install [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli):
+6. Install [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli):
 
     ```
     $ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
@@ -108,7 +87,7 @@
     $ sudo apt-get install terraform
     ```
 
-8. Build the [AWS Batch Infrastructure](https://aws.amazon.com/batch/) by running the following `terraform` commands:
+7. Build the [AWS Batch Infrastructure](https://aws.amazon.com/batch/) by running the following `terraform` commands:
 
     > *Change the values of the `profile` and `key_name` in the `terraform/vars.tf` file and change the `bucket` name for both `tf_batch_data_bucket` and `tf_batch_work_bucket`*
 
@@ -122,7 +101,7 @@
 
     ![aws-batch-infrastructure](images/aws-batch-infrastructure.png)
 
-9. Install [Nextflow](https://www.nextflow.io/docs/latest/getstarted.html) and move the `nextflow` file to a directory accessible by the `$PATH` variable.
+8. Install [Nextflow](https://www.nextflow.io/docs/latest/getstarted.html) and move the `nextflow` file to a directory accessible by the `$PATH` variable.
 
     > *Nextflow requires Bash 3.2 (or later) and Java 11 (or later, up to 18) to be installed.*
 
@@ -133,7 +112,7 @@
     $ nextflow self-update
     ```
 
-10. Set default AWS `profile` for `nextflow`:
+9. Set default AWS `profile` for `nextflow`:
 
     ```
     $ echo "export AWS_PROFILE=profile-name" >> ~/.bash_profile
@@ -164,7 +143,7 @@
             └── ERR034520_2.fastq
     ```
 
-11. Run the workflow using the following command:
+10. Run the workflow using the following command:
 
     > *Run `nextflow run main.nf -work-dir s3://batch-work-bucket-virginia/ --downsample true` to downsample the data. This is useful for debuging purposes.*
 

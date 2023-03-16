@@ -37,7 +37,7 @@ resource "aws_batch_compute_environment" "tf_batch_compute_environment_spot_1" {
   depends_on               = [aws_iam_role_policy_attachment.tf_batch_service_role]
 
   compute_resources {
-    ec2_key_pair        = local.key_name
+    ec2_key_pair        = var.aws_key_name
     image_id            = data.aws_ami.tf_batch_amazon_linux_ami.id
     instance_role       = aws_iam_instance_profile.tf_batch_ecs_instance_role.arn
     spot_iam_fleet_role = aws_iam_role.tf_batch_ec2_spot_fleet_role.arn
@@ -64,7 +64,7 @@ resource "aws_batch_compute_environment" "tf_batch_compute_environment_spot_2" {
   depends_on               = [aws_iam_role_policy_attachment.tf_batch_service_role]
 
   compute_resources {
-    ec2_key_pair        = local.key_name
+    ec2_key_pair        = var.aws_key_name
     image_id            = data.aws_ami.tf_batch_amazon_linux_ami.id
     instance_role       = aws_iam_instance_profile.tf_batch_ecs_instance_role.arn
     spot_iam_fleet_role = aws_iam_role.tf_batch_ec2_spot_fleet_role.arn

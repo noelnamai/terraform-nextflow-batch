@@ -144,6 +144,6 @@ resource "aws_iam_policy_attachment" "tf_batch_xray_policy_attachment" {
 
 resource "aws_grafana_role_association" "tf_batch_grafana_role_association" {
   role         = "ADMIN"
-  user_ids     = [data.vault_generic_secret.tf_secret_vault_development.data["AWS_USER_ID"]]
+  user_ids     = [var.aws_iam_user_id]
   workspace_id = aws_grafana_workspace.tf_batch_grafana_workspace.id
 }

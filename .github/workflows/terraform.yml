@@ -10,6 +10,10 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
+env:
+  TF_VAR_aws_key_name: ${{ secrets.AWS_KEY_NAME }}
+  TF_VAR_aws_iam_user_id: ${{ secrets.AWS_USER_ID }}
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
