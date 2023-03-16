@@ -46,7 +46,7 @@ resource "aws_batch_compute_environment" "tf_batch_compute_environment_spot_1" {
     max_vcpus           = 80
     type                = "SPOT"
     instance_type       = ["m5.xlarge", "m5.2xlarge", "m5.4xlarge"]
-    allocation_strategy = "BEST_FIT_PROGRESSIVE"
+    allocation_strategy = "BEST_FIT"
     security_group_ids  = [aws_security_group.tf_aws_batch_sg.id]
     subnets             = local.subnets
 
@@ -73,7 +73,7 @@ resource "aws_batch_compute_environment" "tf_batch_compute_environment_spot_2" {
     max_vcpus           = 80
     type                = "SPOT"
     instance_type       = ["c5.xlarge", "c5.2xlarge", "c5.4xlarge"]
-    allocation_strategy = "BEST_FIT_PROGRESSIVE"
+    allocation_strategy = "BEST_FIT"
     security_group_ids  = [aws_security_group.tf_aws_batch_sg.id]
     subnets             = local.subnets
 
