@@ -10,6 +10,7 @@
     terraform-nextflow-batch
     ├── README.md
     ├── docker
+    |   ├── bwa
     │   ├── fastqc
     │   ├── samtools
     │   ├── seqtk
