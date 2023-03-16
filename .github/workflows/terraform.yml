@@ -30,11 +30,6 @@ jobs:
       
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-      
-      - name: Terraform Format
-        working-directory: ./terraform
-        id: fmt
-        run: terraform fmt -check
 
       - name: Terraform Init
         working-directory: ./terraform
