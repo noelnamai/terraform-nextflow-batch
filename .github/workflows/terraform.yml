@@ -1,4 +1,4 @@
-name: Automate Terraform with CI/CD
+name: Automate Terraform
 
 on:
   push:
