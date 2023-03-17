@@ -38,7 +38,7 @@ resource "aws_subnet" "tf_aws_batch_public_subnet" {
   }
 }
 
-#allow vpc flow logs to s3
+# allow vpc flow logs to s3
 resource "aws_flow_log" "tf_aws_flow_log" {
   log_destination      = aws_s3_bucket.tf_batch_buckets["batch-audit-bucket"].arn
   log_destination_type = "s3"

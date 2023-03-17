@@ -16,5 +16,7 @@ locals {
 
 # names for s3 buckets
 locals {
-  s3_bucket_names = ["batch-data-bucket-virginia", "batch-work-bucket-virginia", "batch-audit-bucket"]
+  s3_bucket_names = [
+    "batch-audit-bucket", "batch-data-bucket-virginia", "batch-work-bucket-virginia",
+  ]
 }
