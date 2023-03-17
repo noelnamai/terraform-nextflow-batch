@@ -60,7 +60,7 @@ resource "aws_route_table" "tf_aws_batch_public_rt" {
   vpc_id = aws_vpc.tf_aws_batch_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = module.subnet_addrs.base_cidr_block
     gateway_id = aws_internet_gateway.tf_aws_batch_igw.id
   }
 
@@ -69,7 +69,7 @@ resource "aws_route_table" "tf_aws_batch_public_rt" {
   }
 }
 
-# create the security group and allow ingress of port 22 and egress of all ports
+# create the security group and allow ingress and egress of ports
 resource "aws_security_group" "tf_aws_batch_sg" {
   name        = "tf-aws-batch-sg"
   description = "security group for the batch vpc"
@@ -132,11 +132,11 @@ resource "aws_security_group" "tf_aws_batch_sg" {
   }
 
   egress {
-    description = "allow-all-outgoing-traffic"
+    description = "allow-outgoing-traffic"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["172.32.0.0/16"]
+    cidr_blocks = [module.subnet_addrs.base_cidr_block]
   }
 
   depends_on = [
