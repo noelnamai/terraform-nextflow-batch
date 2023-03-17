@@ -40,7 +40,7 @@ resource "aws_subnet" "tf_aws_batch_public_subnet" {
 
 #allow vpc flow logs to s3
 resource "aws_flow_log" "tf_aws_flow_log" {
-  log_destination      = aws_s3_bucket.tf_batch_buckets["batch-work-bucket-virginia"].arn
+  log_destination      = aws_s3_bucket.tf_batch_buckets["batch-audit-bucket"].arn
   log_destination_type = "s3"
   traffic_type         = "ALL"
   vpc_id               = aws_vpc.tf_aws_batch_vpc.id
@@ -132,10 +132,11 @@ resource "aws_security_group" "tf_aws_batch_sg" {
   }
 
   egress {
+    description = "allow-all-outgoing-traffic"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["172.32.0.0/16"]
   }
 
   depends_on = [

@@ -9,7 +9,7 @@ on:
     - docker/**
   schedule:
     - cron: "0 0 * * *"
-    
+
 jobs:
   fastqc:
     runs-on: ubuntu-latest

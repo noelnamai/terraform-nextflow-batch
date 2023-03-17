@@ -3,6 +3,10 @@ resource "aws_s3_bucket" "tf_batch_buckets" {
   for_each      = toset(local.s3_bucket_names)
   bucket        = each.key
   force_destroy = true
+
+  logging {
+    target_bucket = "batch-audit-bucket"
+  }
 }
 
 # disable or enable versioning on s3 bucket objects
