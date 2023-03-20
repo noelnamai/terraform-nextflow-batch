@@ -7,8 +7,6 @@ on:
     - main
     paths:
     - nextflow/**
-  schedule:
-    - cron: "0 0 * * *"
 
 jobs:
   nextflow:

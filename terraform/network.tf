@@ -60,7 +60,7 @@ resource "aws_route_table" "tf_aws_batch_public_rt" {
   vpc_id = aws_vpc.tf_aws_batch_vpc.id
 
   route {
-    cidr_block = module.subnet_addrs.base_cidr_block
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.tf_aws_batch_igw.id
   }
 
